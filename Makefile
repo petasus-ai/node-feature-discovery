@@ -8,7 +8,7 @@ IMAGE_BUILD_CMD ?= docker build
 IMAGE_BUILD_EXTRA_OPTS ?=
 IMAGE_PUSH_CMD ?= docker push
 CONTAINER_RUN_CMD ?= docker run
-BUILDER_IMAGE ?= golang:1.23.8-bookworm
+BUILDER_IMAGE ?= golang:1.23.12-bookworm
 BASE_IMAGE_FULL ?= debian:bookworm-slim
 BASE_IMAGE_MINIMAL ?= scratch
 
@@ -29,9 +29,9 @@ SITE_BASEURL ?=
 SITE_DESTDIR ?= _site
 JEKYLL_OPTS := -d '$(SITE_DESTDIR)' $(if $(SITE_BASEURL),-b '$(SITE_BASEURL)',)
 
-VERSION := $(shell git describe --tags --dirty --always --match "v*")
+VERSION = v0.17.4
 
-IMAGE_REGISTRY ?= registry.k8s.io/nfd
+IMAGE_REGISTRY ?= quay.io/edgestack
 IMAGE_TAG_NAME ?= $(VERSION)
 IMAGE_EXTRA_TAG_NAMES ?=
 
@@ -63,7 +63,7 @@ BUILD_FLAGS = -tags osusergo,netgo \
               -ldflags "-s -w -extldflags=-static -X sigs.k8s.io/node-feature-discovery/pkg/version.version=$(VERSION) -X sigs.k8s.io/node-feature-discovery/pkg/utils/hostpath.pathPrefix=$(HOSTMOUNT_PREFIX)"
 
 # multi-arch build with buildx
-IMAGE_ALL_PLATFORMS ?= linux/amd64,linux/arm64,linux/arm/v7
+IMAGE_ALL_PLATFORMS ?= linux/amd64,linux/arm64
 
 # enable buildx
 ensure-buildx:

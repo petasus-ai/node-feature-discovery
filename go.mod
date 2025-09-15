@@ -2,6 +2,8 @@ module sigs.k8s.io/node-feature-discovery
 
 go 1.23.0
 
+toolchain go1.23.12
+
 require (
 	github.com/fsnotify/fsnotify v1.8.0
 	github.com/google/go-cmp v0.6.0
@@ -33,7 +35,7 @@ require (
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.32.7
 	k8s.io/kubelet v0.32.7
-	k8s.io/kubernetes v1.32.7
+	k8s.io/kubernetes v1.32.8
 	k8s.io/pod-security-admission v0.32.7
 	k8s.io/utils v0.0.0-20241104100929-3ea5e8cea738
 	oras.land/oras-go/v2 v2.5.0
